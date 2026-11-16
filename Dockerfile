@@ -14,8 +14,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /run/sshd
 
-RUN echo 'root:root' | chpasswd
-# SSH setup
 RUN ssh-keygen -A \
     && echo 'root:root' | chpasswd \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
