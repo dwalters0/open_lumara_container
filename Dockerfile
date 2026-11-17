@@ -11,6 +11,7 @@ RUN apt-get update \
         ca-certificates \
         openssh-client \
         openssh-server \
+        nano \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /run/sshd
 
@@ -26,7 +27,7 @@ RUN ./install.sh
 RUN ./run.sh & sleep 15
 RUN sed -i 's/network_mode: local/network_mode: internet/' config.yml
 RUN sed -i 's/url: http:\/\/API_URL_HERE\/v1/url: http:\/\/pc.dan:11434\/v1/' config.yml
-RUN sed -i "s/name: ''/name: Qwen3.5-9B-Q4_0/" config.yml
+RUN sed -i "s/  name: ''/  name: Qwen3.5-9B-Q4_0/" config.yml
 RUN sed -i 's/if self.config.get("network_mode") == "internet" and not self.auth_enforced:/if self.config.get("network_mode") == "stahpit" and not self.auth_enforced:/' /root/openlumara/channels/webui/channel.py
 
 WORKDIR /root
